@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>User Accounts</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet"> <!-- Adding custom font -->
+    <style>
+        body {
+            background-image: url('/images/bg.jpg'); /* Update with your image path */
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            font-family: 'Poppins', sans-serif;
+            color: #fff;
+        }
+
+        .navbar {
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar-brand {
+            font-weight: 600;
+        }
+
+        .details-bg {
+            background-color: rgba(128, 239, 124, 0.97); /* Semi-transparent white */
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+            margin-bottom: 30px;
+        }
+
+        .card {
+            border-radius: 15px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 123, 255, 0.2);
+        }
+
+        .card-body {
+            padding: 25px;
+        }
+
+        .card-title {
+            font-size: 1.75rem;
+            font-weight: 600;
+        }
+
+        .card-text {
+            font-size: 1.1rem;
+        }
+
+        .btn-outline-primary {
+            width: 200px;
+            padding: 12px;
+            font-size: 1.1rem;
+            border-radius: 30px;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .btn-outline-primary:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 123, 255, 0.3);
+        }
+
+        h1 {
+            font-size: 3rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+        }
+
+        dl dt {
+            font-weight: 600;
+        }
+
+        .row.mt-5 {
+            margin-top: 30px;
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg bg-secondary">
+        <div class="container-fluid">
+            <a class="navbar-brand text-light" href="http://localhost:8091/">Simplified Bank</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active text-light" aria-current="page" href="http://localhost:8091/">Home</a>
+                    </li>
+                </ul>
+            </div>
+            <a th:href="@{/}" class="btn btn-outline-primary text-light">Log Out</a>
+        </div>
+    </nav>
+
+    <div class="container mt-5">
+        <h1 class="text-center text-light">Your Account</h1>
+
+        <div class="details-bg mt-4">
+            <dl class="row">
+                <dt class="col-sm-3 h4">Name:</dt>
+                <dd class="col-sm-9 h4"><span th:text="${fullname}">Your Name</span></dd>
+        
+                <dt class="col-sm-3 h4">Address:</dt>
+                <dd class="col-sm-9 h4"><span th:text="${Address}">Your Address</span></dd>
+        
+                <dt class="col-sm-3 h4">Branch Id:</dt>
+                <dd class="col-sm-9 h4"><span th:text="${branchId}">Branch ID</span></dd>
+        
+                <dt class="col-sm-3 h4">Pan Card:</dt>
+                <dd class="col-sm-9 h4"><span th:text="${pancard}">Your PAN</span></dd>
+            </dl>
+        </div>
+
+        <div class="row mt-5">
+            <div class="col-sm-6 mb-3 mb-sm-0">
+                <div class="card text-bg-info mb-3">
+                    <div class="card-body">
+                        <h5 class="card-title">Transaction Page</h5>
+                        <p class="card-text">Perform deposits or withdrawals from your account seamlessly.</p>
+                        <form action="/transaction" method="get">
+                            <button class="btn btn-outline-primary"><p class="h4 text-light">Transaction</p></button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="card text-bg-info mb-3">
+                    <div class="card-body">
+                        <h5 class="card-title">Show Account Page</h5>
+                        <p class="card-text">View details of all your linked accounts in one place.</p>
+                        <form action="/accounts/show" method="get">
+                            <button class="btn btn-outline-primary"><p class="h4 text-light">Show Account</p></button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
