@@ -2,7 +2,6 @@ package com.Banking.OnlineBanking.entity;
 
 import java.sql.Timestamp;
 
-import org.hibernate.annotations.DialectOverride;
 import org.hibernate.annotations.DynamicUpdate;
 
 import jakarta.persistence.CascadeType;
@@ -33,8 +32,7 @@ public class Account {
     private Long id;
     private String accountType;
     private Double balance = 0.0;
-    // @Version
-    // private Integer version;
+    
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id")

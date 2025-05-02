@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.Banking.OnlineBanking.entity.Account;
 import com.Banking.OnlineBanking.entity.User;
+import com.Banking.OnlineBanking.service.EmailService;
 import com.Banking.OnlineBanking.service.TransactionService;
 
 import jakarta.servlet.http.HttpSession;
@@ -17,6 +18,9 @@ import jakarta.servlet.http.HttpSession;
 public class TransactionController {
     @Autowired
     private TransactionService transactionService;
+
+    @Autowired
+    private EmailService emailService;
 
     @GetMapping("/transaction")
     public String showTransactionForm(HttpSession session,Model model) {
@@ -34,6 +38,13 @@ public class TransactionController {
         System.out.println(account);
         model.addAttribute("user", user);
         model.addAttribute("account",account);
+        try {
+            String subject = "Simplified Banking: Deposit Alert";
+            String body = "WELCOME "+ user.getFullname() + ", your account has been debited by: " + amount;
+            emailService.sendEmail(user.getEmail(), subject, body,user.getEmail() );
+        } catch (Exception e) {
+            System.out.println(e.getStackTrace());
+        }
         transactionService.deposit(accountId, amount,session);
         return "transaction";
     }
@@ -53,6 +64,13 @@ public class TransactionController {
         model.addAttribute("user", user);
         model.addAttribute("account",account);
         transactionService.withdraw(accountId, amount,session);
+        try {
+            String subject = "Simplified Banking: Withdrawal Alert";
+            String body = "WELCOME "+ user.getFullname() + ", your account has been debited by: " + amount;
+            emailService.sendEmail(user.getEmail(), subject, body, user.getEmail() );
+        } catch (Exception e) {
+            System.out.println(e.getStackTrace());
+        }
         return "transaction";
     }
 }

@@ -1,5 +1,6 @@
 package com.Banking.OnlineBanking.entity;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -10,22 +11,26 @@ public class User {
     public User() {
         System.out.println("no para constructor");
     }
-    public User(String username, String password, String fullname, String address, Long branchId) {
+    public User(String username, String password, String fullname, String address, Long branchId, String Email, String pancard) {
         this.username = username;
         this.password = password;
         this.fullname = fullname;
         this.address = address;
         this.branchId = branchId;
+        this.pancard = pancard;
+        this.Email = Email;
     }
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long userId;
+    // @Column( unique=true)
     private String username;
     private String password;
     private String fullname;
     private String address;
     private Long branchId;
     private String pancard;
+    private String Email;
     
     public Long getuserId() {
         return userId;
@@ -70,5 +75,13 @@ public class User {
 
     public void setPancard(String pancard) {
         this.pancard = pancard;
+    }
+
+    public String getEmail() {
+        return Email;
+    }
+
+    public void setEmail(String Email) {
+        this.Email = Email;
     }
 }
