@@ -28,14 +28,19 @@ public class TransactionService {
         User user = (User) session.getAttribute("user");
         Account account = accountService.getAccountsByUser(user);
         if(account.getId() == accountId){
-            account.setBalance(account.getBalance() + amount);
-            accountRepository.save(account);
+            if(amount<=0){
+                throw new IllegalArgumentException("illegal argument");
+            }else{
+                account.setBalance(account.getBalance() + amount);
+                accountRepository.save(account);
 
-            Transaction transaction = new Transaction("DEPOSIT", amount, account);
-            transaction.setType("DEPOSIT");
-            transaction.setAmount(amount);
-            transaction.setAccount(account);
-            transactionRepository.save(transaction);
+                Transaction transaction = new Transaction("DEPOSIT", amount, account);
+                transaction.setType("DEPOSIT");
+                transaction.setAmount(amount);
+                transaction.setAccount(account);
+                transactionRepository.save(transaction);
+            }
+            
         }
     }
 

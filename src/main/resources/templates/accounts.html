@@ -23,21 +23,27 @@
         }
 
         .details-bg {
-            background-color: rgba(128, 239, 124, 0.97); /* Semi-transparent white */
+            background-color: rgba(138, 43, 226, 0.97);
             border-radius: 15px;
             padding: 25px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
             margin-bottom: 30px;
         }
 
+        .details-bg:hover{
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(138, 43, 226, 0.97);
+        }
+
         .card {
             border-radius: 15px;
+            background-color: rgba(59, 255, 245, 0.95);
             transition: transform 0.3s, box-shadow 0.3s;
         }
 
         .card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 5px 15px rgba(0, 123, 255, 0.2);
+            box-shadow: 0 5px 15px rgba(138, 43, 226, 0.97);
         }
 
         .card-body {
@@ -125,7 +131,7 @@
 
         <div class="row mt-5">
             <div class="col-sm-6 mb-3 mb-sm-0">
-                <div class="card text-bg-info mb-3">
+                <div class="card mb-3">
                     <div class="card-body">
                         <h5 class="card-title">Transaction Page</h5>
                         <p class="card-text">Perform deposits or withdrawals from your account seamlessly.</p>
@@ -136,7 +142,7 @@
                 </div>
             </div>
             <div class="col-sm-6">
-                <div class="card text-bg-info mb-3">
+                <div class="card mb-3">
                     <div class="card-body">
                         <h5 class="card-title">Show Account Page</h5>
                         <p class="card-text">View details of all your linked accounts in one place.</p>
